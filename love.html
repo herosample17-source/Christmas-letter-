@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Merry Christmas, Jen ❤️</title>
+  <style>
+    /* 1. Base Styles & Background */
+    :root {
+      --primary-red: #c92a2a;
+      --soft-pink: #ffdde1;
+      --deep-rose: #ee9ca7;
+      --text-gray: #4a4a4a;
+      --gold: #d4af37;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background: linear-gradient(135deg, var(--soft-pink), var(--deep-rose));
+      color: var(--text-gray);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden; /* Prevents scrollbars from snow */
+    }
+
+    /* 2. Snow Animation */
+    .snowflake {
+      color: #fff;
+      position: fixed;
+      top: -10%;
+      z-index: 1;
+      user-select: none;
+      pointer-events: none;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      to { transform: translateY(110vh) rotate(360deg); }
+    }
+
+    /* 3. Card Container */
+    .card {
+      background: rgba(255, 255, 255, 0.92);
+      width: 85%;
+      max-width: 450px;
+      padding: 50px 30px;
+      border-radius: 30px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+      text-align: center;
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.4);
+      backdrop-filter: blur(8px);
+      z-index: 10;
+    }
+
+    /* 4. Content Elements */
+    .tagline {
+      font-style: italic;
+      color: #888;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .heart-icon {
+      color: var(--primary-red);
+      font-size: 2.5rem;
+      display: inline-block;
+      animation: pulse 2s infinite ease-in-out;
+      margin: 15px 0;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+
+    h1 {
+      color: var(--primary-red);
+      font-size: 2.4rem;
+      margin: 0 0 20px 0;
+      font-weight: normal;
+    }
+
+    .message {
+      line-height: 1.8;
+      font-size: 1.15rem;
+      margin-bottom: 30px;
+    }
+
+    .love-letter {
+      font-size: 1rem;
+      font-style: italic;
+      color: #b33a3a;
+      margin-bottom: 25px;
+      line-height: 1.5;
+    }
+
+    .signature {
+      font-family: 'Brush Script MT', cursive;
+      font-size: 1.8rem;
+      color: var(--primary-red);
+      margin-top: 20px;
+    }
+
+    /* 5. Decorative Border */
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 15px; left: 15px; right: 15px; bottom: 15px;
+      border: 1px solid var(--gold);
+      border-radius: 20px;
+      pointer-events: none;
+      opacity: 0.4;
+    }
+
+    /* 6. Interaction */
+    .cta-button {
+      background: var(--primary-red);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: 'Georgia', serif;
+      transition: 0.3s;
+      margin-top: 10px;
+    }
+
+    .cta-button:hover {
+      background: #a02222;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="tagline">Made for you</div>
+    <span class="heart-icon">❤️</span>
+    <h1>Merry Christmas, Jen</h1>
+    
+    <div class="message">
+      May your holidays be as <br>
+      <strong>bright and beautiful</strong> <br>
+      as you are to me.
+    </div>
+
+    <div class="love-letter">
+      My dearest Jen, my most beautiful wify,<br>
+      <br>
+      Every moment with you feels like a magical gift. This Christmas, I just want you to know how deeply I love you and how grateful I am to have you in my life.<br>
+      <br>
+      Here's to countless more memories together.<br>
+      <br>
+      Forever yours,<br>
+      Hero
+    </div>
+
+    <button class="cta-button" onclick="showSurprise()">Click for a Wish</button>
+    
+    <div id="surprise-text" style="display:none; margin-top:20px; color:var(--gold); font-weight:bold;">
+      You're the best gift I've ever received! 🎁
+    </div>
+
+    <div class="signature">With love, Hero</div>
+  </div>
+
+  <script>
+    // 1. Create Snowflakes
+    function createSnowflake() {
+      const snowflake = document.createElement('div');
+      const icons = ['❄', '❅', '❆', '•'];
+      snowflake.classList.add('snowflake');
+      snowflake.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+      
+      snowflake.style.left = Math.random() * 100 + 'vw';
+      snowflake.style.animationDuration = Math.random() * 3 + 4 + 's'; // 4-7 seconds
+      snowflake.style.opacity = Math.random() * 0.7 + 0.3;
+      snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+
+      document.body.appendChild(snowflake);
+
+      // Clean up snowflake after it falls
+      setTimeout(() => {
+        snowflake.remove();
+      }, 7000);
+    }
+
+    // Generate snow continuously
+    setInterval(createSnowflake, 200);
+
+    // 2. Button Interaction
+    function showSurprise() {
+      const text = document.getElementById('surprise-text');
+      text.style.display = 'block';
+      // Basic confetti effect via alert or you could add more JS
+      console.log("Merry Christmas, Jen!");
+    }
+  </script>
+</body>
+</html>
